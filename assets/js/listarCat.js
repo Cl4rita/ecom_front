@@ -3,7 +3,7 @@ let tabelaCategoria = document.getElementById('tabelaCategoria')
 window.addEventListener('DOMContentLoaded', () =>{
 
     const token = sessionStorage.getItem('token')
-    fetch(`http://localhost:3000/categoria`, {
+    fetch(`https://ecomback-production-666a.up.railway.app/categoria`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

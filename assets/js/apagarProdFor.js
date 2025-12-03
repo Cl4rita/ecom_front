@@ -14,7 +14,7 @@ apagar.addEventListener('click', (e) =>{
     }
 
     const token = sessionStorage.getItem('token')
-    fetch(`http://localhost:3000/produtoFornecedor/${id}`, {
+    fetch(`https://ecomback-production-666a.up.railway.app/produtoFornecedor/${id}`, {
         method: 'DELETE',
         headers: {
 

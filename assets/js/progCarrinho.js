@@ -128,7 +128,7 @@ btnFinalizar.addEventListener('click', async () => {
 const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token')
 
     // Buscar endereço principal
-    const enderecoResponse = await fetch('http://localhost:3000/endereco', {
+    const enderecoResponse = await fetch('https://ecomback-production-666a.up.railway.app/endereco', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -164,7 +164,7 @@ const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) ||
 
     console.log('Enviando pedido:', pedidoData)
 
-    fetch('http://localhost:3000/pedido', { // Ajuste a rota conforme seu backend
+    fetch('https://ecomback-production-666a.up.railway.app/pedido', { // Ajuste a rota conforme seu backend
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ login.addEventListener('click', (e) => {
     const valores = { email, senha }
 
     // usar a rota correta do backend
-    fetch(`http://localhost:3000/login`, {
+    fetch(`https://ecomback-production-666a.up.railway.app/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

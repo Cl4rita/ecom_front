@@ -37,7 +37,7 @@ async function carregarPedidos(filtros = {}) {
         // Mostrar loading
         if (loading) loading.style.display = 'block';
         
-        const response = await fetch('http://localhost:3000/pedido', {
+        const response = await fetch('https://ecomback-production-666a.up.railway.app/pedido', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -307,7 +307,7 @@ async function abrirModalDetalhes(pedidoId) {
     const token = Auth.getToken();
 
     try {
-        const response = await fetch(`http://localhost:3000/pedido`, {
+        const response = await fetch(`https://ecomback-production-666a.up.railway.app/pedido`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -409,7 +409,7 @@ async function alterarStatusPedido(pedidoId) {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/pedido/${pedidoId}/status`, {
+        const response = await fetch(`https://ecomback-production-666a.up.railway.app/pedido/${pedidoId}/status`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -437,7 +437,7 @@ async function cancelarPedido(pedidoId) {
     const token = Auth.getToken();
 
     try {
-        const response = await fetch(`http://localhost:3000/pedido/${pedidoId}/status`, {
+        const response = await fetch(`https://ecomback-production-666a.up.railway.app/pedido/${pedidoId}/status`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

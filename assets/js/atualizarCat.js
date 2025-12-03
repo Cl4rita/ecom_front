@@ -29,7 +29,7 @@ atualizar.addEventListener('click', (e) =>{
     if(nome && descricao && is_ativo){
 
         console.log('Realizando PUT')
-        fetch(`http://localhost:3000/categoria/${id}`, {
+        fetch(`https://ecomback-production-666a.up.railway.app/categoria/${id}`, {
             method: 'PUT',
             headers: {
 
@@ -56,7 +56,7 @@ atualizar.addEventListener('click', (e) =>{
     }else{
 
         console.log('Realizando PATCH')
-        fetch(`http://localhost:3000/categoria/${id}`, {
+        fetch(`https://ecomback-production-666a.up.railway.app/categoria/${id}`, {
             method: 'PATCH',
             headers: {
 

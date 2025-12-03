@@ -205,7 +205,7 @@ function salvarPerfil() {
     const nome = document.getElementById('nome').value.trim()
     const email = document.getElementById('email').value.trim()
     const telefone = document.getElementById('telefone').value.trim()
-    const API_BASE = 'http://localhost:3000'
+    const API_BASE = 'https://ecomback-production-666a.up.railway.app'
     const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token') || localStorage.getItem('token')
 
     fetch(API_BASE + '/usuario', {
@@ -253,7 +253,7 @@ function alterarSenha() {
     if (novaSenha !== confirmar) return alert('A nova senha e a confirmação não coincidem')
     if (novaSenha.length < 6) return alert('A senha deve ter pelo menos 6 caracteres')
 
-    const API_BASE = 'http://localhost:3000'
+    const API_BASE = 'https://ecomback-production-666a.up.railway.app'
     const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token') || localStorage.getItem('token')
 
     fetch(API_BASE + '/usuario/senha', {
@@ -296,7 +296,7 @@ function salvarEndereco() {
         is_principal: document.getElementById('is_principal').checked
     }
 
-    const API_BASE = 'http://localhost:3000'
+    const API_BASE = 'https://ecomback-production-666a.up.railway.app'
     const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token') || localStorage.getItem('token')
 
     const method = editingId ? 'PUT' : 'POST'
@@ -323,7 +323,7 @@ function salvarEndereco() {
  
 async function listarEnderecos() {
     try {
-        const API_BASE = 'http://localhost:3000'
+        const API_BASE = 'https://ecomback-production-666a.up.railway.app'
         const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token') || localStorage.getItem('token')
         const r = await fetch(API_BASE + '/endereco', { method: 'GET', headers: { 'Authorization': token ? ('Bearer ' + token) : '' } })
         const dados = await r.json()
@@ -358,7 +358,7 @@ async function listarEnderecos() {
             btn.addEventListener('click', async (e) => {
                 const id = e.currentTarget.getAttribute('data-id')
                 try {
-                    const API_BASE = 'http://localhost:3000'
+                    const API_BASE = 'https://ecomback-production-666a.up.railway.app'
                     const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token') || localStorage.getItem('token')
                     await fetch(API_BASE + `/endereco/${id}/principal`, { method: 'PATCH', headers: { 'Authorization': token ? ('Bearer ' + token) : '' } })
                     listarEnderecos()
@@ -379,7 +379,7 @@ async function listarEnderecos() {
                 const id = e.currentTarget.getAttribute('data-id')
                 if (!confirm('Remover este endereço?')) return
                 try {
-                    const API_BASE = 'http://localhost:3000'
+                    const API_BASE = 'https://ecomback-production-666a.up.railway.app'
                     const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token') || localStorage.getItem('token')
                     const resp = await fetch(API_BASE + `/endereco/${id}`, { method: 'DELETE', headers: { 'Authorization': token ? ('Bearer ' + token) : '' } })
                     if (!resp.ok) {

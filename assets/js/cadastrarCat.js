@@ -25,7 +25,7 @@ cadastrar.addEventListener('click', (e) =>{
     console.log(valores)
 
     const token = sessionStorage.getItem('token')
-    fetch(`http://localhost:3000/categoria  `, {
+    fetch(`https://ecomback-production-666a.up.railway.app/categoria  `, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

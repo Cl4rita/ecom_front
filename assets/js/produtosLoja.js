@@ -33,7 +33,7 @@ async function carregarProdutos() {
 
         const token = Auth.getToken()
         
-        const response = await fetch('http://localhost:3000/produto', {
+        const response = await fetch('https://ecomback-production-666a.up.railway.app/produto', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

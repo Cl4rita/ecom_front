@@ -24,7 +24,7 @@ atualizar.addEventListener('click', (e) =>{
     if(nomeEmpresa && email && cnpj && telefone){
 
         console.log('Realizando PUT')
-        fetch(`http://localhost:3000/fornecedor/${id}`, {
+        fetch(`https://ecomback-production-666a.up.railway.app/fornecedor/${id}`, {
             method: 'PUT',
             headers: {
 
@@ -51,7 +51,7 @@ atualizar.addEventListener('click', (e) =>{
     }else{
 
         console.log('Realizando PATCH')
-        fetch(`http://localhost:3000/fornecedor/${id}`, {
+        fetch(`https://ecomback-production-666a.up.railway.app/fornecedor/${id}`, {
             method: 'PATCH',
             headers: {
 
