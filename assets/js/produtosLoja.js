@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    console.log('DEBUG: produtosLoja.js loaded, calling carregarProdutos')
     carregarProdutos();
 });
 
@@ -51,6 +52,7 @@ async function carregarProdutos() {
         }
 
         const produtos = await response.json()
+        console.log('DEBUG: Produtos recebidos da API:', produtos)
         produtosCache = produtos || []
         exibirProdutos(produtosCache)
     } catch (err) {
@@ -61,19 +63,22 @@ async function carregarProdutos() {
 
 function exibirProdutos(produtos) {
     const container = document.getElementById('grade-produtos');
-    
+
     if (!produtos || produtos.length === 0) {
         container.innerHTML = '<p>Nenhum produto disponível no momento.</p>'
         return
     }
 
+    console.log('DEBUG: Total de produtos:', produtos.length)
+    const ativos = produtos.filter(p => p.ativo)
+    console.log('DEBUG: Produtos ativos:', ativos.length)
+
     container.innerHTML = '';
 
     produtos.forEach(produto => {
-        if (produto.ativo) { // Mostrar apenas produtos ativos
-            const produtoElement = criarProdutoElement(produto);
-            container.appendChild(produtoElement);
-        }
+        // Temporariamente mostrar todos os produtos, independente de ativo
+        const produtoElement = criarProdutoElement(produto);
+        container.appendChild(produtoElement);
     });
 }
 

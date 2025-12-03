@@ -114,13 +114,30 @@ function configurarModal() {
     }
 }
 
-function abrirModal() {
+function abrirModal(addr = null) {
     const modal = document.getElementById('addressModal');
     const formulario = document.getElementById('addressForm');
-    
+
     if (modal && formulario) {
-        document.getElementById('modalTitle').textContent = 'Adicionar Endereço';
-        formulario.reset();
+        if (addr) {
+            document.getElementById('modalTitle').textContent = 'Editar Endereço';
+            // Preencher formulário com dados do endereço
+            document.getElementById('cep').value = addr.cep || '';
+            document.getElementById('apelido').value = addr.apelido || '';
+            document.getElementById('logradouro').value = addr.logradouro || '';
+            document.getElementById('numero').value = addr.numero || '';
+            document.getElementById('complemento').value = addr.complemento || '';
+            document.getElementById('bairro').value = addr.bairro || '';
+            document.getElementById('localidade').value = addr.localidade || '';
+            document.getElementById('uf').value = addr.uf || '';
+            document.getElementById('is_principal').checked = addr.is_principal || false;
+            // Armazenar ID para edição
+            formulario.setAttribute('data-editing-id', addr.codEndereco || addr.id);
+        } else {
+            document.getElementById('modalTitle').textContent = 'Adicionar Endereço';
+            formulario.reset();
+            formulario.removeAttribute('data-editing-id');
+        }
         modal.classList.add('active');
     }
 }
@@ -266,6 +283,7 @@ function alterarSenha() {
 
 function salvarEndereco() {
     const form = document.getElementById('addressForm')
+    const editingId = form.getAttribute('data-editing-id')
     const data = {
         cep: document.getElementById('cep').value.trim(),
         apelido: document.getElementById('apelido').value.trim(),
@@ -281,21 +299,25 @@ function salvarEndereco() {
     const API_BASE = 'http://localhost:3000'
     const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token') || localStorage.getItem('token')
 
-    fetch(API_BASE + '/endereco', {
-        method: 'POST',
+    const method = editingId ? 'PUT' : 'POST'
+    const url = editingId ? API_BASE + '/endereco/' + editingId : API_BASE + '/endereco'
+
+    fetch(url, {
+        method: method,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token ? ('Bearer ' + token) : ''
         },
         body: JSON.stringify(data)
     }).then(r => r.json()).then(resp => {
-        alert('Endereço salvo com sucesso!')
+        showMessage(editingId ? 'Endereço atualizado com sucesso!' : 'Endereço salvo com sucesso!', 'success')
         fecharModal()
         listarEnderecos()
         form.reset()
+        form.removeAttribute('data-editing-id')
     }).catch(err => {
         console.error('Erro ao salvar endereço', err)
-        alert('Erro ao salvar endereço: ' + (err.message || err))
+        showMessage('Erro ao salvar endereço: ' + (err.message || err), 'error')
     })
 }
  
@@ -324,6 +346,7 @@ async function listarEnderecos() {
                 <p>${addr.bairro} - ${addr.localidade}/${addr.uf}</p>
                 <div class="address-actions">
                     ${addr.is_principal ? '' : `<button class="btn btn-outline set-principal" data-id="${addrId}">Definir como principal</button>`}
+                    <button class="btn btn-secondary edit-addr" data-id="${addrId}">Editar</button>
                     <button class="btn btn-danger delete-addr" data-id="${addrId}">Remover</button>
                 </div>
             `
@@ -340,6 +363,14 @@ async function listarEnderecos() {
                     await fetch(API_BASE + `/endereco/${id}/principal`, { method: 'PATCH', headers: { 'Authorization': token ? ('Bearer ' + token) : '' } })
                     listarEnderecos()
                 } catch (err) { console.error('Erro ao definir principal', err) }
+            })
+        })
+
+        document.querySelectorAll('.edit-addr').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.getAttribute('data-id')
+                const addr = dados.find(a => (a.codEndereco || a.id) == id)
+                if (addr) abrirModal(addr)
             })
         })
 

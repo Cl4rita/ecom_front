@@ -112,7 +112,7 @@ function removerProduto(index) {
 }
 
 // Finalizar compra — envia os dados para o backend
-btnFinalizar.addEventListener('click', () => {
+btnFinalizar.addEventListener('click', async () => {
     if (carrinho.length === 0) {
         alert('Seu carrinho está vazio!')
         return
@@ -127,21 +127,43 @@ btnFinalizar.addEventListener('click', () => {
 
 const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token')
 
+    // Buscar endereço principal
+    const enderecoResponse = await fetch('http://localhost:3000/endereco', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    if (!enderecoResponse.ok) {
+        alert('Erro ao buscar endereços. Selecione um endereço.')
+        return
+    }
+
+    const enderecos = await enderecoResponse.json()
+    const enderecoPrincipal = enderecos.find(end => end.is_principal)
+
+    if (!enderecoPrincipal) {
+        alert('Você precisa ter um endereço principal cadastrado.')
+        return
+    }
+
     // Transforma os dados do carrinho para o formato do pedido
     const pedidoData = {
+        idEndereco: enderecoPrincipal.codEndereco || enderecoPrincipal.id,
         itens: carrinho.map(produto => ({
             produtoId: produto.id,
             quantidade: produto.quantidade,
             precoUnitario: produto.preco
         })),
-        total: carrinho.reduce((total, produto) => total + (produto.preco * produto.quantidade), 0)
+        metodoPagamento: 'CARTAO_CREDITO' // Exemplo, pode ser selecionado
     }
 
     console.log('Enviando pedido:', pedidoData)
 
     fetch('http://localhost:3000/pedido', { // Ajuste a rota conforme seu backend
         method: 'POST',
-        headers: { 
+        headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },

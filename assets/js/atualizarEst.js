@@ -44,7 +44,7 @@ atualizar.addEventListener('click', (e) =>{
             mensagem.style.color = 'black'
         }else{
 
-            mensagem.style.color = 'pink'
+            mensagem.style.color = 'black'
             mensagem.style.textAlign = 'center'
         }
     })
