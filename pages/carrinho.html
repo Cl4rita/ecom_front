@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style2.css">
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/progCarrinho.js" defer></script>
+    <title>Carrinho de Compras</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🧴💫 𝖯𝗂𝗇𝗄 𝖢𝗁𝖺𝗋𝗆𝖾</h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="./loja.html" class="nav-link">Loja</a>
+                    <div class="user-menu" id="userMenu">
+                        <span class="user-name" id="userName">Usuário</span>
+                        <div class="dropdown">
+                            <a href="./perfilEndereco.html" class="active">Meu Perfil</a>
+                            <a href="./pedidos.html">Meus Pedidos</a>
+                            <button id="logoutBtn">Sair</button>
+                        </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="featured">
+            <h2>Resumo do Carrinho</h2>
+            <div id="area-carrinho" class="carrinho-container">
+                <!-- A tabela será gerada dinamicamente pelo JavaScript -->
+            </div>
+
+            <div class="total-container">
+                <p id="total">Total: R$ 0,00</p>
+            </div>
+
+            <div class="botoes-carrinho">
+                <button id="btn-finalizar" class="btn btn-primary btn-large">Finalizar Compra</button>
+                <button id="btn-limpar" class="btn btn-outline">Esvaziar Carrinho</button>
+                <button id="btn-voltar" class="btn btn-outline">Voltar à Loja</button>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

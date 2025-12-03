@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style2.css">
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/pedidos.js" defer></script>
+    <title>Meus Pedidos - Pink Charme</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🧴💫 𝖯𝗂𝗇𝗄 𝖢𝗁𝖺𝗋𝗆𝖾</h1>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html" class="nav-link">Home</a>
+                <a href="./loja.html" class="nav-link">Loja</a>
+                <a href="./carrinho.html" class="nav-link">Carrinho</a>
+                <div class="nav-auth">
+                    <div class="user-menu" id="userMenu">
+                        <span class="user-name" id="userName">Usuário</span>
+                        <div class="dropdown">
+                            <a href="./perfilEndereco.html">Meu Perfil</a>
+                            <a href="./pedidos.html" class="active">Meus Pedidos</a>
+                            <button id="logoutBtn">Sair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1>Meus Pedidos</h1>
+                <p>Acompanhe seus pedidos e histórico de compras</p>
+            </div>
+
+            <div class="pedidos-container">
+                <!-- Filtros -->
+                <div class="filtros-pedidos">
+                    <div class="filtro-group">
+                        <label for="filtroStatus">Status:</label>
+                        <select id="filtroStatus">
+                            <option value="todos">Todos os pedidos</option>
+                            <option value="pendente">Pendente</option>
+                            <option value="pago">Pago</option>
+                            <option value="enviado">Enviado</option>
+                            <option value="entregue">Entregue</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                    <div class="filtro-group">
+                        <label for="filtroPeriodo">Período:</label>
+                        <select id="filtroPeriodo">
+                            <option value="todos">Todos</option>
+                            <option value="30">Últimos 30 dias</option>
+                            <option value="90">Últimos 3 meses</option>
+                            <option value="365">Último ano</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline" id="btnLimparFiltros">Limpar Filtros</button>
+                </div>
+
+                <!-- Lista de Pedidos -->
+                <div class="pedidos-lista" id="pedidosLista">
+                    <!-- Pedidos serão carregados via JavaScript -->
+                    <div class="loading-pedidos">
+                        <p>Carregando seus pedidos...</p>
+                    </div>
+                </div>
+
+                <!-- Estado vazio -->
+                <div class="empty-state hidden" id="emptyState">
+                    <div class="empty-icon">📦</div>
+                    <h3>Nenhum pedido encontrado</h3>
+                    <p>Você ainda não fez nenhum pedido ou não há pedidos correspondentes aos filtros selecionados.</p>
+                    <a href="loja.html" class="btn btn-primary">Fazer Minha Primeira Compra</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Detalhes do Pedido -->
+    <div class="modal" id="detalhesPedidoModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3>Detalhes do Pedido <span id="modalNumeroPedido"></span></h3>
+                <button class="modal-close" id="closeDetalhesModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detalhes-pedido">
+                    <!-- Detalhes serão preenchidos via JavaScript -->
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="fecharDetalhesModal">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

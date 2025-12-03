@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style2.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/login.js" defer></script>
+    <title>Login - Pink Charme</title>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Entrar na Pink Charme</h1>
+                <p>Digite suas credenciais para acessar sua conta</p>
+            </div>
+            
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="a@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" id="login">Entrar</button>
+            </form>
+
+            <div id="message" class="message"></div>
+
+            <div class="auth-footer">
+                <p>Não tem uma conta? <a href="./cadastrarUs.html">Cadastre-se</a></p>
+                <p><a href="../index.html">← Voltar para a loja</a></p>
+            </div>
+
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style2.css">
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/admin.js" defer></script>
+    <script>
+        // Página apenas para ADMIN
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.Auth) Auth.requireAuth(['ADMIN'])
+        })
+    </script>
+    <title>Pink Charme - Sua Loja de SkinCare Premium</title>
+</head>
+<body>
+    <main class="main" style="display:flex; align-items:center; justify-content:center; min-height:80vh;">
+        <div style="text-align:center;">
+            <h1>Área administrativa</h1>
+            <p>Escolha a seção para gerenciar:</p>
+            <div style="display:flex; gap:12px; justify-content:center; margin-top:18px; flex-wrap:wrap;">
+                <a class="btn btn-primary" href="./produto.html">Produtos</a>
+                <a class="btn btn-primary" href="./cadastrarEst.html">Estoque</a>
+                <a class="btn btn-outline" href="./login.html" id="logoutBtn">Sair</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

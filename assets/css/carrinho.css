@@ -1,0 +1,136 @@
+/* ====== ESTILOS GERAIS ====== */
+:root {
+    --bg-dark: #212529;
+    --bg-surface: #2c3034;
+    --text-light: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --color-primary: #4c95eb;
+    --color-danger: #dc3545;
+    --border-color: #ff7aaf;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header{
+    width: 100%;
+    background-color: rgb(239, 164, 189);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 15px 30px;
+}
+
+header.menu {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    background-color: rgb(255, 207, 224);
+}
+
+header.menu nav a {
+    color: var(--border-color);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    margin: 0 4px;
+    transition: background-color 0.3s;
+}
+
+header.menu nav a:hover {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: bolder;
+}
+
+.menu {
+    text-align: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+    padding: 6px 10px;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    background-color: pink;
+    border-radius: 8px;
+}
+
+main {
+    margin-top: 24px;
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#total {
+    font-weight: bold;
+    margin-top: 16px;
+}
+
+.btn-comprar {
+    background-color: rgb(239, 164, 189);
+    color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-comprar:hover {
+    background-color: rgb(0, 0, 0, 0.4);
+}
+
+footer {
+    margin-top: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}

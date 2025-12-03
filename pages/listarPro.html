@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style2.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/listarPro.js" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.Auth) Auth.requireAuth(['ADMIN'])
+        })
+    </script>
+    <title>Listagem - Pink Charme</title>
+</head>
+<body>
+    <div class="auth-container">
+        <div style="display:flex; gap:12px; justify-content:center; margin-top:18px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="./produto.html">Produtos</a>
+            <div class="form-card2">
+                <div id="tabelaProdutos"></div>
+            </div>
+            </div>
+    
+</body>
+</html>
