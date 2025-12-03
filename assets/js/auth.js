@@ -5,27 +5,27 @@ function saveUserSession(userData) {
   sessionStorage.setItem('user', JSON.stringify(userData));
 }
 
-// Função para verificar se o usuário está autenticado
-function isAuthenticated() {
-  return sessionStorage.getItem('user') !== null;
-}
+// // Função para verificar se o usuário está autenticado
+// function isAuthenticated() {
+//   return sessionStorage.getItem('user') !== null;
+// }
 
-// Função para redirecionar usuários não autenticados
-function enforceAuthentication() {
-  // Use minimal page-name checks so different hosting paths still match
-  const publicPages = [
-      'index.html',
-      'pages/login.html',
-      'pages/cadastrarUs.html'
-  ];   
+// // Função para redirecionar usuários não autenticados
+// function enforceAuthentication() {
+//   // Use minimal page-name checks so different hosting paths still match
+//   const publicPages = [
+//       'index.html',
+//       'pages/login.html',
+//       'pages/cadastrarUs.html'
+//   ];   
 
-  const currentPath = window.location.pathname;
+//   const currentPath = window.location.pathname;
 
-  if (!isAuthenticated() && !publicPages.some(page => currentPath.endsWith(page))) {
-      // Redirect relatively where possible
-      try { window.location.href = 'login.html' } catch (e) { window.location.href = './login.html' }
-  }
-}
+//   if (!isAuthenticated() && !publicPages.some(page => currentPath.endsWith(page))) {
+//       // Redirect relatively where possible
+//       try { window.location.href = 'login.html' } catch (e) { window.location.href = './login.html' }
+//   }
+// }
 
 // Chamar a função de verificação ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
