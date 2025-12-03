@@ -29,7 +29,7 @@ cadastrar.addEventListener('click', (e) =>{
 
     console.log(valores)
 
-    fetch(`https://ecomback-production-64e4.up.railway.app/usuario`, {
+    fetch(`http://localhost:3000/usuario`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

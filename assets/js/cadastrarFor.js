@@ -4,11 +4,15 @@ let mensagem = document.getElementById('message')
 cadastrar.addEventListener('click', (e) =>{
     e.preventDefault()
 
-    let nome = document.getElementById('nome').value
-    let descricao = document.getElementById('descricao').value
-    let is_ativo = document.getElementById('is_ativo').value
+    let nomeEmpresa = document.getElementById('nomeEmpresa').value
+    let idCategoria = Number(document.getElementById('idCategoria').value)
+    let cnpj = document.getElementById('cnpj').value
+    let modelo = document.getElementById('modelo').value
+    let preco = document.getElementById('preco').value
+    let imagem_url = document.getElementById('imagem_url').value
+    let ativo = document.getElementById('ativo').value
 
-    if(!nome || !descricao ||!is_ativo){
+    if(!nomeEmpresa || !modelo || !preco || !ativo || !idCategoria){
 
         mensagem.innerHTML = `Preencha todos os campos para prosseguir.`
         mensagem.style.color = 'pink'
@@ -17,15 +21,19 @@ cadastrar.addEventListener('click', (e) =>{
     }
 
     const valores = {
-        nome,
-        descricao,
-        is_ativo,
+        nomeEmpresa,
+        idCategoria,
+        cnpj,
+        modelo,
+        preco,
+        imagem_url,
+        ativo,
     }
 
     console.log(valores)
 
     const token = sessionStorage.getItem('token')
-    fetch(`http://localhost:3000/categoria  `, {
+    fetch(`http://localhost:3000/produto`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
