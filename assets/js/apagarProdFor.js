@@ -14,7 +14,7 @@ apagar.addEventListener('click', (e) =>{
     }
 
     const token = sessionStorage.getItem('token')
-    fetch(`http://localhost:3000/categoria/${id}`, {
+    fetch(`http://localhost:3000/produtoFornecedor/${id}`, {
         method: 'DELETE',
         headers: {
 
@@ -32,7 +32,7 @@ apagar.addEventListener('click', (e) =>{
         }else if(resp.status === 404){
 
             mensagem.innerHTML = ''
-            mensagem.innerHTML += 'Categoria não encontrado.'
+            mensagem.innerHTML += 'Produto Fornecedor não encontrado.'
             mensagem.style.textAlign = 'center'
         }
     })

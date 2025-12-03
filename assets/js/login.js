@@ -9,7 +9,7 @@ login.addEventListener('click', (e) => {
 
     if (!email || !senha) {
         mensagem.innerHTML = `Preencha todos os campos para prosseguir.`
-        mensagem.style.color = 'pink'
+        mensagem.style.color = '#818380'
         mensagem.style.textAlign = 'center'
         return
     }
@@ -32,7 +32,7 @@ login.addEventListener('click', (e) => {
         // backend returns { token, usuario: { nome, tipo } }
         if (!dados || !dados.token) {
             mensagem.innerHTML = dados.error || dados.message || 'Erro ao realizar login!'
-            mensagem.style.color = 'pink'
+            mensagem.style.color = '#818380'
             mensagem.style.textAlign = 'center'
             return
         }
@@ -67,7 +67,7 @@ login.addEventListener('click', (e) => {
 
         console.error('Erro ao realizar login:', err)
         mensagem.innerHTML = `Erro ao realizar login.`
-        mensagem.style.color = 'pink'
+        mensagem.style.color = '#818380'
         mensagem.style.textAlign = 'center'
     })
 })

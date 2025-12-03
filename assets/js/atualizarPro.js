@@ -58,7 +58,7 @@ atualizar.addEventListener('click', (e) =>{
     
             console.error('Erro ao atualizar completamente: ', err)
             mensagem.innerHTML = 'Erro ao atualizar completamente: ' + err
-            mensagem.style.color = 'pink'
+            mensagem.style.color = '#818380'
             mensagem.style.textAlign = 'center'
         })
     // -------------------------------------------- ATUALIZAR PARCIAL --------------------------------------------
@@ -86,7 +86,7 @@ atualizar.addEventListener('click', (e) =>{
     
             console.error('Erro ao atualizar parcialmente: ', err)
             mensagem.innerHTML = 'Erro ao atualizar parcialmente: ' + err
-            mensagem.style.color = 'pink'
+            mensagem.style.color = '#818380'
             mensagem.style.textAlign = 'center'
         }) 
     }

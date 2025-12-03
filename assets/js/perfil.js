@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => {
                 Auth.clearAuth()
-                window.location.href = '../login.html'
+                window.location.href = './login.html'
             })
         }
 

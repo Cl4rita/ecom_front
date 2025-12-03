@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => {
                 Auth.clearAuth()
-                window.location.href = 'login.html'
+                window.location.href = './login.html'
             })
         }
     }
@@ -148,6 +148,9 @@ const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) ||
         return
     }
 
+    // Obter método de pagamento selecionado
+    const metodoPagamento = document.querySelector('input[name="metodoPagamento"]:checked').value
+
     // Transforma os dados do carrinho para o formato do pedido
     const pedidoData = {
         idEndereco: enderecoPrincipal.codEndereco || enderecoPrincipal.id,
@@ -156,7 +159,7 @@ const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) ||
             quantidade: produto.quantidade,
             precoUnitario: produto.preco
         })),
-        metodoPagamento: 'CARTAO_CREDITO' // Exemplo, pode ser selecionado
+        metodoPagamento: metodoPagamento
     }
 
     console.log('Enviando pedido:', pedidoData)

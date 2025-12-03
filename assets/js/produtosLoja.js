@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => {
                 Auth.clearAuth()
-                window.location.href = 'login.html'
+                window.location.href = './login.html'
             })
         }
     }
@@ -26,8 +26,8 @@ async function carregarProdutos() {
     try {
         // Verificar se o usuário está autenticado
         if (!window.Auth || !Auth.isLoggedIn()) {
-            console.error('Usuário não autenticado')
-            document.getElementById('grade-produtos').innerHTML = '<p>Faça login para ver os produtos</p>'
+            window.location.href = './login.html'
+            setTimeout(() => {}, 50);
             return
         }
 

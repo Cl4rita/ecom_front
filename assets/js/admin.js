@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             logoutBtn.addEventListener('click', () => {
                 Auth.clearAuth()
                 // redirect to login page in the same public folder
-                window.location.href = 'login.html'
+                window.location.href = './login.html'
             })
         }
     }

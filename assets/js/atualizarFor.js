@@ -5,31 +5,26 @@ atualizar.addEventListener('click', (e) =>{
     e.preventDefault()
 
     let id = Number(document.getElementById('id').value)
-    let nome = document.getElementById('nome').value
-    let descricao = document.getElementById('descricao').value
-    let is_ativo = document.getElementById('is_ativo').value
-
-
+    let nomeEmpresa = document.getElementById('nomeEmpresa').value
+    let email = document.getElementById('email').value
+    let cnpj = document.getElementById('cnpj').value
+    let telefone = document.getElementById('telefone').value
 
     const valores = {}
 
-    if (nome !== "") valores.nome = nome
-    if (descricao !== "") valores.descricao = descricao
-    
-    // Se is_ativo for nulo no HTMl, converte pra TRUE
-    // Necessário porque como é booleano, não aceita valores != true ou false
-    if(is_ativo === "null") is_ativo = true
-
-    if (is_ativo !== "") valores.is_ativo = is_ativo
+    if (nomeEmpresa !== "") valores.nomeEmpresa = nomeEmpresa
+    if (email !== "") valores.email = email
+    if (cnpj !== "") valores.cnpj = cnpj
+    if (telefone !== "") valores.telefone = telefone
 
     const token = sessionStorage.getItem('token')
     console.log(valores)
 
     // --------------------------------------------- ATUALIZAR COMPLETO --------------------------------------------
-    if(nome && descricao && is_ativo){
+    if(nomeEmpresa && email && cnpj && telefone){
 
         console.log('Realizando PUT')
-        fetch(`http://localhost:3000/categoria/${id}`, {
+        fetch(`http://localhost:3000/fornecedor/${id}`, {
             method: 'PUT',
             headers: {
 
@@ -56,7 +51,7 @@ atualizar.addEventListener('click', (e) =>{
     }else{
 
         console.log('Realizando PATCH')
-        fetch(`http://localhost:3000/categoria/${id}`, {
+        fetch(`http://localhost:3000/fornecedor/${id}`, {
             method: 'PATCH',
             headers: {
 

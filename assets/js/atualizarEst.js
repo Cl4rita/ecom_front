@@ -52,7 +52,7 @@ atualizar.addEventListener('click', (e) =>{
 
         console.error('Erro ao atualizar estoque: ', err)
         mensagem.innerHTML = 'Erro ao atualizar estoque: ' + err.message
-        mensagem.style.color = 'pink'
+        mensagem.style.color = '#818380'
         mensagem.style.textAlign = 'center'
     })
 })

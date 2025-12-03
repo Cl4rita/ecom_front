@@ -11,7 +11,7 @@ cadastrar.addEventListener('click', (e) =>{
     if(!nome || !descricao ||!is_ativo){
 
         mensagem.innerHTML = `Preencha todos os campos para prosseguir.`
-        mensagem.style.color = 'pink'
+        mensagem.style.color = '#818380'
         mensagem.style.textAlign = 'center'
         return
     }
@@ -45,7 +45,7 @@ cadastrar.addEventListener('click', (e) =>{
 
         console.error('Erro ao realizar o cadastro: ', err)
         mensagem.innerHTML = 'Erro ao realizar o cadastro: ' + err
-        mensagem.style.color = 'pink'
+        mensagem.style.color = '#818380'
         mensagem.style.textAlign = 'center'
     })
 })

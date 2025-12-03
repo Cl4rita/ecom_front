@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style2.css">
+    <link rel="stylesheet" href="../assets/css/style3.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/atualizarProdFor.js" defer></script>
+    <script>
+        // Página apenas para ADMIN
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.Auth) Auth.requireAuth(['ADMIN'])
+        })
+    </script>
+    <title>Cadastro - Pink Charme</title>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Cadastrar Produto Fornecedor</h1>
+                <p>Preencha os dados para cadastrar o produto fornecedor</p>
+            </div>
+    <br> 
+            <form id="registroForm" class="auth-form">
+                <div class="form-group">
+                    <label for="id">Código do Produto Fornecedor</label>
+                    <input type="text" id="id" name="id" placeholder="4" required>
+                </div>
+
+            <form id="registroForm" class="auth-form">
+                <div class="form-group">
+                    <label for="idProduto">Código do Produto</label>
+                    <input type="text" id="idProduto" name="idProduto" placeholder="53" required>
+                </div>
+
+            <form id="registroForm" class="auth-form">
+                <div class="form-group">
+                    <label for="idFornecedor">Código do Fornecedor</label>
+                    <input type="text" id="idFornecedor" name="idFornecedor" placeholder="35" required>
+                </div>
+
+                <form id="registroForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="custoUnitarioAtual">Custo Atual</label>
+                        <input type="text" id="custoUnitarioAtual" name="custoUnitarioAtual" placeholder="Custo Atual" required>
+                    </div>
+                
+                <div class="form-group">
+                    <label for="codigoReferencia">Código Referencia</label>
+                    <input type="text" id="codigoReferencia" name="codigoReferencia" placeholder="Código Referencia" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" id="atualizar">Atualizar</button>
+            </form>
+
+            <div id="message" class="message"></div>
+
+                        <div class="auth-footer">
+                    <p><a href="./prodfor.html">← Voltar</a></p>
+                    </div>
+        </div>
+</body>
+</html>

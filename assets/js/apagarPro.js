@@ -9,7 +9,7 @@ apagar.addEventListener('click', (e) =>{
     if(!id){
 
         mensagem.style.textAlign = 'center'
-        mensagem.style.color = 'pink'
+        mensagem.style.color = '#818380'
         return mensagem.innerHTML = 'Preencha o campo necessário para prosseguir.'
     }
 
@@ -40,7 +40,7 @@ apagar.addEventListener('click', (e) =>{
     
         console.error('Erro ao apagar: ', err)
         mensagem.innerHTML = 'Erro ao apagar: ' + err
-        mensagem.style.color = 'pink'
+        mensagem.style.color = '#818380'
         mensagem.style.textAlign = 'center'
     }) 
 })

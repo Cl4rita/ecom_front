@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/style3.css">
     <link rel="stylesheet" href="../assets/css/auth.css">
     <script src="../assets/js/auth.js" defer></script>
-    <script src="../assets/js/cadastrarFor.js" defer></script>
+    <script src="../assets/js/cadastrarProdFor.js" defer></script>
     <script>
         // Página apenas para ADMIN
         window.addEventListener('DOMContentLoaded', () => {
@@ -20,30 +20,31 @@
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <h1>Cadastrar Fornecedor</h1>
-                <p>Preencha os dados para cadastrar o fornecedor</p>
+                <h1>Cadastrar Produto Fornecedor</h1>
+                <p>Preencha os dados para cadastrar o produto fornecedor</p>
             </div>
     <br> 
             <form id="registroForm" class="auth-form">
                 <div class="form-group">
-                    <label for="nomeEmpresa">Nome da Empresa</label>
-                    <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Nome do Empresa" required>
+                    <label for="idProduto">Código do Produto</label>
+                    <input type="text" id="idProduto" name="idProduto" placeholder="53" required>
+                </div>
+
+            <form id="registroForm" class="auth-form">
+                <div class="form-group">
+                    <label for="idFornecedor">Código do Fornecedor</label>
+                    <input type="text" id="idFornecedor" name="idFornecedor" placeholder="35" required>
                 </div>
 
                 <form id="registroForm" class="auth-form">
                     <div class="form-group">
-                        <label for="cnpj">CNPJ</label>
-                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" required>
+                        <label for="custoUnitarioAtual">Custo Atual</label>
+                        <input type="text" id="custoUnitarioAtual" name="custoUnitarioAtual" placeholder="Custo Atual" required>
                     </div>
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" placeholder="Email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="text" id="telefone" name="telefone" placeholder="Telefone" required>
+                    <label for="codigoReferencia">Código Referencia</label>
+                    <input type="text" id="codigoReferencia" name="codigoReferencia" placeholder="Código Referencia" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-full" id="cadastrar">Cadastrar</button>
@@ -52,7 +53,7 @@
             <div id="message" class="message"></div>
 
                         <div class="auth-footer">
-                    <p><a href="./fornecedor.html">← Voltar</a></p>
+                    <p><a href="./prodfor.html">← Voltar</a></p>
                     </div>
         </div>
 </body>

@@ -1,17 +1,15 @@
+const cadastrar = document.getElementById('cadastrar')
 let mensagem = document.getElementById('message')
-
-let cadastrar = document.getElementById('cadastrar')
 
 cadastrar.addEventListener('click', (e) =>{
     e.preventDefault()
 
-    let nome = document.getElementById('nome').value
-    let email = document.getElementById('email').value
-    let telefone = document.getElementById('telefone').value
-    let cpf = document.getElementById('cpf').value
-    let senha = document.getElementById('senha').value
+    let idProduto = Number(document.getElementById('idProduto').value)
+    let idFornecedor = Number(document.getElementById('idFornecedor').value)
+    let custoUnitarioAtual = Number(document.getElementById('custoUnitarioAtual').value)
+    let codigoReferencia = Number(document.getElementById('codigoReferencia').value)
 
-    if(!nome || !email || !telefone || !cpf || !senha){
+    if(!idProduto || !codigoReferencia || !custoUnitarioAtual || !idFornecedor){
 
         mensagem.innerHTML = `Preencha todos os campos para prosseguir.`
         mensagem.style.color = '#818380'
@@ -20,19 +18,20 @@ cadastrar.addEventListener('click', (e) =>{
     }
 
     const valores = {
-        nome: nome,
-        email:email,
-        telefone: telefone,
-        cpf: cpf,
-        senha: senha,
+        idProduto,
+        idFornecedor,
+        custoUnitarioAtual,
+        codigoReferencia
     }
 
     console.log(valores)
 
-    fetch(`http://localhost:3000/usuario`, {
+    const token = sessionStorage.getItem('token')
+    fetch(`http://localhost:3000/produtoFornecedor`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },  
         body: JSON.stringify(valores)
     })
@@ -43,9 +42,6 @@ cadastrar.addEventListener('click', (e) =>{
         mensagem.innerHTML = ''
         mensagem.innerHTML += dados.message
         mensagem.style.textAlign = 'center'
-        setTimeout(() => {
-            window.location.href = './login.html'
-    }, 200);
     })
     .catch((err) =>{
 
