@@ -5,39 +5,31 @@ atualizar.addEventListener('click', (e) =>{
     e.preventDefault()
 
     let id = Number(document.getElementById('id').value)
-    let idCategoria = document.getElementById('idCategoria').value
     let nome = document.getElementById('nome').value
     let descricao = document.getElementById('descricao').value
-    let modelo = document.getElementById('modelo').value
-    let preco = document.getElementById('preco').value
-    let imagem_url = document.getElementById('imagem_url').value
-    let ativo = document.getElementById('ativo').value
+    let is_ativo = document.getElementById('is_ativo').value
 
 
 
     const valores = {}
 
     if (nome !== "") valores.nome = nome
-    if (idCategoria !== "") valores.idCategoria = idCategoria
     if (descricao !== "") valores.descricao = descricao
-    if (modelo !== "") valores.modelo = modelo
-    if (preco !== "") valores.preco = preco
-    if (imagem_url !== "") valores.imagem_url = imagem_url
     
-    // Se ATIVO for nulo no HTMl, converte pra TRUE
+    // Se is_ativo for nulo no HTMl, converte pra TRUE
     // Necessário porque como é booleano, não aceita valores != true ou false
-    if(ativo === "null") ativo = true
+    if(is_ativo === "null") is_ativo = true
 
-    if (ativo !== "") valores.ativo = ativo
+    if (is_ativo !== "") valores.is_ativo = is_ativo
 
     const token = sessionStorage.getItem('token')
     console.log(valores)
 
     // --------------------------------------------- ATUALIZAR COMPLETO --------------------------------------------
-    if(nome && descricao && modelo && preco && imagem_url && ativo && idCategoria){
+    if(nome && descricao && is_ativo){
 
         console.log('Realizando PUT')
-        fetch(`http://localhost:3000/produto/${id}`, {
+        fetch(`http://localhost:3000/categoria/${id}`, {
             method: 'PUT',
             headers: {
 
@@ -65,7 +57,7 @@ atualizar.addEventListener('click', (e) =>{
     }else{
 
         console.log('Realizando PATCH')
-        fetch(`http://localhost:3000/produto/${id}`, {
+        fetch(`http://localhost:3000/categoria/${id}`, {
             method: 'PATCH',
             headers: {
 

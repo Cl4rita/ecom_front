@@ -15,9 +15,9 @@ function enforceAuthentication() {
   // Use minimal page-name checks so different hosting paths still match
   const publicPages = [
       'index.html',
-      'public/login.html',
-      'public/Usuario/cadastrar.html'
-  ];
+      'pages/login.html',
+      'pages/cadastrarUs.html'
+  ];   
 
   const currentPath = window.location.pathname;
 
@@ -76,11 +76,11 @@ const Auth = {
   },
 
   // allowedRoles: array of roles allowed (e.g. ['ADMIN'])
-  requireAuth(allowedRoles = null, redirectTo = '/frontend/public/login.html') {
+  requireAuth(allowedRoles = null, redirectTo = '/pages/login.html') {
     // If not logged, redirect to login
     if (!this.isLoggedIn()) {
       // use a relative redirect where possible
-      const dest = redirectTo || 'frontend/login.html'
+      const dest = redirectTo || '/login.html'
       window.location.href = dest
       return false
     }
@@ -89,7 +89,7 @@ const Auth = {
       const role = this.getRole()
       if (!role || !allowedRoles.includes(role)) {
         // redirect to store / unauthorized page (try relative path first)
-        try { window.location.href = 'frontend/loja.html' } catch(e) { window.location.href = 'frontend/public/loja.html' }
+        try { window.location.href = './loja.html' } catch(e) { window.location.href = './loja.html' }
         return false
       }
     }
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault()
         Auth.clearAuth()
           // try sensible redirects depending on current path
-          const tryPaths = ['login.html', './login.html', '../frontend/login.html', '/frontend/public/login.html']
+          const tryPaths = ['login.html', './login.html', '../frontend/login.html', '/frontend/pages/login.html']
           for (const p of tryPaths) {
             try { window.location.href = p; return } catch (err) {}
           }
