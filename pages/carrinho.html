@@ -19,13 +19,16 @@
             <div class="nav-links">
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="./loja.html" class="nav-link">Loja</a>
+                <div class="nav-auth">
                     <div class="user-menu" id="userMenu">
                         <span class="user-name" id="userName">Usuário</span>
                         <div class="dropdown">
-                            <a href="./perfilEndereco.html" class="active">Meu Perfil</a>
+                            <a href="./perfilEndereco.html">Meu Perfil</a>
                             <a href="./pedidos.html">Meus Pedidos</a>
                             <button id="logoutBtn">Sair</button>
                         </div>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -41,32 +44,6 @@
                 <p id="total">Total: R$ 0,00</p>
             </div>
 
-            <div class="pagamento-container">
-                <h3>Escolha o método de pagamento</h3>
-                <div class="metodo-pagamento">
-                    <label>
-                        <input type="radio" name="metodoPagamento" value="CARTAO_CREDITO" checked>
-                        Cartão de Crédito
-                    </label>
-                    <label>
-                        <input type="radio" name="metodoPagamento" value="PIX">
-                        PIX
-                    </label>
-                    <label>
-                        <input type="radio" name="metodoPagamento" value="BOLETO">
-                        Boleto
-                    </label>
-                    <label>
-                        <input type="radio" name="metodoPagamento" value="DEBITO">
-                        Débito
-                    </label>
-                    <label>
-                        <input type="radio" name="metodoPagamento" value="TRANSFERENCIA">
-                        Transferência
-                    </label>
-                </div>
-            </div>
-
             <div class="botoes-carrinho">
                 <button id="btn-finalizar" class="btn btn-primary btn-large">Finalizar Compra</button>
                 <button id="btn-limpar" class="btn btn-outline">Esvaziar Carrinho</button>
@@ -74,6 +51,132 @@
             </div>
         </section>
     </main>
+
+    <!-- Modal para finalizar compra e pagamento -->
+    <div class="modal" id="pagamentoModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Finalizar Compra</h3>
+                <button class="modal-close" id="closePagamentoModal">&times;</button>
+            </div>
+            <div class="pagamento-container">
+                <h3>Escolha o método de pagamento</h3>
+                <div class="metodo-pagamento">
+                    <div class="pagamento-option" data-method="CARTAO_CREDITO">
+                        <input type="radio" name="metodoPagamento" value="CARTAO_CREDITO" id="cartao" checked>
+                        <label for="cartao">
+                            <span class="pagamento-icon">💳</span>
+                            <span>Cartão de Crédito</span>
+                            <span class="pagamento-desc">Até 12x sem juros</span>
+                        </label>
+                    </div>
+
+                    <div class="pagamento-option" data-method="PIX">
+                        <input type="radio" name="metodoPagamento" value="PIX" id="pix">
+                        <label for="pix">
+                            <span class="pagamento-icon">🏦</span>
+                            <span>PIX</span>
+                            <span class="pagamento-desc">5% de desconto</span>
+                        </label>
+                    </div>
+
+                    <div class="pagamento-option" data-method="BOLETO">
+                        <input type="radio" name="metodoPagamento" value="BOLETO" id="boleto">
+                        <label for="boleto">
+                            <span class="pagamento-icon">🧾</span>
+                            <span>Boleto</span>
+                            <span class="pagamento-desc">Vencimento em 3 dias</span>
+                        </label>
+                    </div>
+
+                    <div class="pagamento-option" data-method="DEBITO">
+                        <input type="radio" name="metodoPagamento" value="DEBITO_ONLINE" id="debito">
+                        <label for="debito">
+                            <span class="pagamento-icon">💸</span>
+                            <span>Débito Online</span>
+                            <span class="pagamento-desc">Pagamento instantâneo</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Informações específicas para cada método -->
+                <div class="info-pagamento active" id="info-cartao">
+                    <h4>Informações do Cartão</h4>
+                    <div class="form-group">
+                        <label for="numeroCartao">Número do Cartão</label>
+                        <input type="text" id="numeroCartao" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="validade">Validade (MM/AA)</label>
+                            <input type="text" id="validade" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeCartao">Nome no Cartão</label>
+                        <input type="text" id="nomeCartao" placeholder="Seu nome como está no cartão">
+                    </div>
+                </div>
+
+                <div class="info-pagamento" id="info-pix">
+                    <h4>Pagamento via PIX</h4>
+                    <div class="qrcode-pix">
+                        <div class="qrcode-placeholder">
+                            <span>QR Code aparecerá aqui</span>
+                        </div>
+                        <p>Escaneie o QR Code com seu app bancário</p>
+                    </div>
+                </div>
+
+                <div class="info-pagamento" id="info-boleto">
+                    <h4>Pagamento via Boleto</h4>
+                    <p>O boleto será gerado após a confirmação do pedido.</p>
+                    <p>Vencimento: 3 dias úteis</p>
+                    <p>Enviaremos o boleto para seu e-mail cadastrado.</p>
+                </div>
+
+                <div class="info-pagamento" id="info-debito_online">
+                    <h4>Pagamento via Débito Online</h4>
+                    <p>Selecione seu banco para pagamento:</p>
+                    <br>
+                    <div class="form-group">
+                        <select id="banco">
+                            <option value="">Selecione seu banco</option>
+                            <option value="itau">Itaú</option>
+                            <option value="bradesco">Bradesco</option>
+                            <option value="santander">Santander</option>
+                            <option value="bb">Banco do Brasil</option>
+                            <option value="caixa">Caixa Econômica</option>
+                            <option value="nubank">Nubank</option>
+                            <option value="inter">Inter</option>
+                        </select>
+                    </div>
+                    <p>Você será redirecionado para o site do seu banco para concluir o pagamento.</p>
+                </div>
+
+                <div class="pagamento-resumo">
+                    <h4>Resumo da Compra</h4>
+                    <div class="resumo-linha">
+                        <span class="resumo-label">Subtotal:</span>
+                        <span class="resumo-valor" id="resumo-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="resumo-linha">
+                        <span class="resumo-label">Total a pagar:</span>
+                        <span class="resumo-valor" id="resumo-total">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-outline" id="cancelPagamentoModal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmarCompra">Confirmar Compra</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

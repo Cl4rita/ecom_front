@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     mostrarCarrinho();
+    mostrarInfoPagamento();
+    atualizarResumo();
 });
 
 const areaCarrinho = document.getElementById('area-carrinho')
@@ -111,8 +113,8 @@ function removerProduto(index) {
     }
 }
 
-// Finalizar compra — envia os dados para o backend
-btnFinalizar.addEventListener('click', async () => {
+// Mostrar modal de pagamento ao clicar em finalizar
+btnFinalizar.addEventListener('click', () => {
     if (carrinho.length === 0) {
         alert('Seu carrinho está vazio!')
         return
@@ -125,7 +127,29 @@ btnFinalizar.addEventListener('click', async () => {
         return
     }
 
-const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token')
+    // Atualizar resumo no modal
+    atualizarResumo()
+
+    // Mostrar modal
+    const modal = document.getElementById('pagamentoModal')
+    modal.classList.add('active')
+
+    // Mostrar info do pagamento selecionado
+    mostrarInfoPagamento()
+})
+
+// Fechar modal
+document.getElementById('closePagamentoModal').addEventListener('click', () => {
+    document.getElementById('pagamentoModal').classList.remove('active')
+})
+
+document.getElementById('cancelPagamentoModal').addEventListener('click', () => {
+    document.getElementById('pagamentoModal').classList.remove('active')
+})
+
+// Confirmar compra — envia os dados para o backend
+document.getElementById('confirmarCompra').addEventListener('click', async () => {
+    const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) || sessionStorage.getItem('token')
 
     // Buscar endereço principal
     const enderecoResponse = await fetch('https://ecomback-production-666a.up.railway.app/endereco', {
@@ -181,7 +205,10 @@ const token = (window.Auth && window.Auth.getToken && window.Auth.getToken()) ||
     .then(dados => {
         console.log('Resposta do servidor:', dados)
         alert('Compra finalizada com sucesso!')
-        
+
+        // Fechar modal
+        document.getElementById('pagamentoModal').classList.remove('active')
+
         // Limpa o carrinho após compra finalizada
         localStorage.removeItem('carrinho')
         carrinho = []
@@ -201,6 +228,87 @@ btnLimpar.addEventListener('click', () => {
         mostrarCarrinho()
     }
 })
+        const pagamentoOptions = document.querySelectorAll('input[name="metodoPagamento"]');
+        const infoSections = document.querySelectorAll('.info-pagamento');
+        
+        // Mostra a seção correspondente ao método selecionado
+        function mostrarInfoPagamento() {
+            const selecionado = document.querySelector('input[name="metodoPagamento"]:checked');
+
+            // Esconde todas as seções
+            infoSections.forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+
+            // Mostra a seção correspondente
+            let sectionId;
+            if (selecionado && selecionado.value === 'DEBITO_ONLINE') {
+                sectionId = 'info-debito_online';
+            } else if (selecionado) {
+                sectionId = `info-${selecionado.value.toLowerCase()}`;
+            }
+
+            const sectionToShow = document.getElementById(sectionId);
+            if (sectionToShow) {
+                sectionToShow.classList.add('active');
+                sectionToShow.style.display = 'block';
+            }
+        }
+
+        // Atualiza o resumo quando o carrinho muda
+        function atualizarResumo() {
+            const totalElement = document.getElementById('total');
+            const totalText = totalElement.textContent;
+            const total = parseFloat(totalText.replace('Total: R$ ', '').replace(',', '.'));
+            
+            if (!isNaN(total)) {
+
+                document.getElementById('resumo-subtotal').textContent = 
+                    `R$ ${total.toFixed(2).replace('.', ',')}`;
+                document.getElementById('total').textContent = 
+                    `R$ ${total.toFixed(2).replace('.', ',')}`;
+            }
+        }
+        
+        // Adiciona eventos
+        pagamentoOptions.forEach(option => {
+            option.addEventListener('change', mostrarInfoPagamento);
+        });
+
+        // Monitora mudanças no carrinho (será chamado pelo progCarrinho.js)
+        window.atualizarResumoCarrinho = atualizarResumo;
+        
+        
+        // Formatação do número do cartão
+        const numeroCartao = document.getElementById('numeroCartao');
+        if (numeroCartao) {
+            numeroCartao.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{4})/g, '$1 ').trim();
+                e.target.value = value.substring(0, 19);
+            });
+        }
+        
+        // Formatação da validade
+        const validade = document.getElementById('validade');
+        if (validade) {
+            validade.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value.substring(0, 5);
+            });
+        }
+        
+        // Formatação do CVV
+        const cvv = document.getElementById('cvv');
+        if (cvv) {
+            cvv.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+            });
+        }
 
 // Botão de voltar à loja
 btnVoltar.addEventListener('click', () => {

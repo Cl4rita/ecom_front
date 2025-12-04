@@ -769,3 +769,230 @@ td img {
     text-align: center;
     font-size: 0.9rem;
 }
+/* ====== ESTILOS DE PAGAMENTO ====== */
+
+.pagamento-container {
+    background: var(--surface-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.pagamento-container h3 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.pagamento-container h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-dark);
+    border-radius: 2px;
+}
+
+.metodo-pagamento {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.pagamento-option {
+    position: relative;
+}
+
+.pagamento-option input[type="radio"] {
+    display: none;
+}
+
+.pagamento-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 130px;
+}
+
+.pagamento-option label:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.pagamento-option input[type="radio"]:checked + label {
+    border-color: var(--primary-dark);
+    background: linear-gradient(135deg, rgba(255, 122, 175, 0.1), rgba(247, 209, 217, 0.2));
+    box-shadow: 0 5px 15px rgba(255, 122, 175, 0.15);
+}
+
+.pagamento-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.pagamento-option span {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.pagamento-desc {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+/* Ícones específicos para cada método */
+.pagamento-option[data-method="CARTAO_CREDITO"] .pagamento-icon {
+    color: #3b82f6; /* Azul */
+}
+
+.pagamento-option[data-method="PIX"] .pagamento-icon {
+    color: #10b981; /* Verde */
+}
+
+.pagamento-option[data-method="BOLETO"] .pagamento-icon {
+    color: #f59e0b; /* Laranja */
+}
+
+.pagamento-option[data-method="DEBITO"] .pagamento-icon {
+    color: #8b5cf6; /* Roxo */
+}
+
+.pagamento-option[data-method="TRANSFERENCIA"] .pagamento-icon {
+    color: #ef4444; /* Vermelho */
+}
+
+/* Resumo do Pagamento */
+.pagamento-resumo {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border: 2px solid var(--border-color);
+}
+
+.pagamento-resumo h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.resumo-linha:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+}
+
+.resumo-label {
+    color: var(--text-secondary);
+}
+
+.resumo-valor {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Informações de Pagamento (para cartão, PIX, etc) */
+.info-pagamento {
+    background: var(--background-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    display: none;
+}
+
+.info-pagamento.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.info-pagamento h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.qrcode-pix {
+    text-align: center;
+    padding: 1rem;
+}
+
+.qrcode-placeholder {
+    width: 200px;
+    height: 200px;
+    background: #e5e7eb;
+    border-radius: 0.5rem;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.codigo-pix {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-family: monospace;
+    word-break: break-all;
+    margin-top: 1rem;
+    border: 2px dashed var(--border-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .metodo-pagamento {
+        grid-template-columns: 1fr;
+    }
+    
+    .pagamento-option label {
+        min-height: 120px;
+        padding: 1.25rem 1rem;
+    }
+    
+    .pagamento-icon {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagamento-container {
+        padding: 1.5rem;
+    }
+    
+    .resumo-linha {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
